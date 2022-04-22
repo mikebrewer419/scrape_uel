@@ -40,8 +40,8 @@ class ArticlescraperSpider(scrapy.Spider):
 		volume = response.xpath("//div[@id='breadcrumb']/a/text()").getall()
 		
 		if len(volume) > 1:
-			volume = volume[1].split()
-		volume, year = re.match("Vol (\d*), No \d \((\d*)\)", "Vol 1, No 1 (1978)").groups()
+			volume = volume[1]
+		volume, year = re.match("Vol (\d*), No \d \((\d*)\)", volume).groups()
 		yield {
 			'volume': volume,
 			'year': year,
